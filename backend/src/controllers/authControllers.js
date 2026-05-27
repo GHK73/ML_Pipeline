@@ -3,7 +3,6 @@
 import prisma from "../lib/prisma.js";
 import bcrypt from "bcryptjs";
 import generateToken from "../utils/generateToken.js";
-import jwt from "jsonwebtoken";
 import {OAuth2Client} from "google-auth-library";
 
 const client = new OAuth2Client(
