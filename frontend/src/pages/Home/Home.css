@@ -96,7 +96,10 @@ body {
     #38bdf8
   );
 
+  background-clip: text;
   -webkit-background-clip: text;
+  
+  color: transparent;
   -webkit-text-fill-color: transparent;
 
   z-index: 1;
@@ -197,7 +200,10 @@ body {
     #c084fc
   );
 
+  background-clip: text;
   -webkit-background-clip: text;
+  
+  color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
