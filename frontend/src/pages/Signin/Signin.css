@@ -1,174 +1,196 @@
-.signin-container {
+/* frontend/src/pages/Signup/Signup.css */
 
-    width: 100%;
-  
-    min-height: 100vh;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    background:
-      linear-gradient(
-        135deg,
-        #050816,
-        #0f172a,
-        #111827
-      );
-  
-    padding-top: 5rem;
-  
+.signup-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Dominant 60% Canvas Match */
+  background: radial-gradient(circle at 50% 30%, #0d1527 0%, #030712 70%);
+  padding: 6rem 1.5rem 2rem 1.5rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Subtle background glows */
+.signup-glow-left {
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+  top: 15%;
+  left: 5%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.signup-glow-right {
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.05) 0%, transparent 70%);
+  bottom: 15%;
+  right: 5%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.signup-box {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 3rem 2.5rem;
+  border-radius: 1.25rem;
+  /* Clean glass layer matching home & signin components */
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  box-sizing: border-box;
+  animation: signupFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes signupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
   }
-  
-  .signin-box {
-  
-    width: 100%;
-    max-width: 420px;
-  
-    padding: 2.5rem;
-  
-    border-radius: 1.5rem;
-  
-    background:
-      rgba(15, 23, 42, 0.9);
-  
-    border:
-      1px solid rgba(255, 255, 255, 0.08);
-  
-    backdrop-filter: blur(14px);
-  
-    box-shadow:
-      0 0 40px rgba(0, 0, 0, 0.4);
-  
-    display: flex;
-    flex-direction: column;
-  
-    gap: 1.2rem;
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .signin-box h1 {
-  
-    text-align: center;
-  
-    font-size: 2rem;
-  
-    color: white;
-  
-    margin-bottom: 1rem;
-  
+}
+
+.signup-box h1 {
+  text-align: center;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+}
+
+.signup-subtitle {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin: 0 0 2rem 0;
+  line-height: 1.4;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.signup-box input {
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  border-radius: 0.65rem;
+  /* Neutral elements aligning to 30% rules */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(3, 7, 18, 0.4);
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.signup-box input:focus {
+  border-color: #2563eb;
+  background: rgba(3, 7, 18, 0.6);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Accent 10% CTA Styling */
+.submit-btn {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 0.65rem;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+/* Premium Custom Line Divider Breakpoint */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.75rem 0;
+  color: #4b5563;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.divider:not(:empty)::before {
+  margin-right: 1rem;
+}
+
+.divider:not(:empty)::after {
+  margin-left: 1rem;
+}
+
+.google-login {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.google-login > div {
+  width: 100% !important;
+}
+
+.redirect-text {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin: 1.75rem 0 0 0;
+}
+
+.redirect-text a {
+  margin-left: 0.3rem;
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.redirect-text a:hover {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+/* RESPONSIVE LAYOUT adjustments */
+@media (max-width: 480px) {
+  .signup-box {
+    padding: 2.25rem 1.5rem;
   }
-  
-  .signin-box input {
-  
-    width: 100%;
-  
-    padding: 1rem;
-  
-    border-radius: 0.9rem;
-  
-    border:
-      1px solid rgba(255, 255, 255, 0.08);
-  
-    background:
-      rgba(255, 255, 255, 0.04);
-  
-    color: white;
-  
-    font-size: 1rem;
-  
-    outline: none;
-  
-  }
-  
-  .signin-box input:focus {
-  
-    border-color: #60a5fa;
-  
-    box-shadow:
-      0 0 15px rgba(96, 165, 250, 0.25);
-  
-  }
-  
-  .signin-box button {
-  
-    width: 100%;
-  
-    padding: 1rem;
-  
-    border: none;
-  
-    border-radius: 0.9rem;
-  
-    background:
-      linear-gradient(
-        to right,
-        #2563eb,
-        #7c3aed
-      );
-  
-    color: white;
-  
-    font-size: 1rem;
-  
-    font-weight: 600;
-  
-    cursor: pointer;
-  
-    transition: 0.3s ease;
-  
-  }
-  
-  .signin-box button:hover {
-  
-    transform: translateY(-2px);
-  
-    box-shadow:
-      0 0 25px rgba(96, 165, 250, 0.35);
-  
-  }
-  
-  .divider {
-  
-    text-align: center;
-  
-    color: #94a3b8;
-  
-    margin: 0.5rem 0;
-  
-  }
-  
-  .google-login {
-  
-    display: flex;
-    justify-content: center;
-  
-  }
-  
-  .redirect-text {
-  
-    text-align: center;
-  
-    color: #cbd5e1;
-  
-    margin-top: 1rem;
-  
-  }
-  
-  .redirect-text a {
-  
-    margin-left: 0.4rem;
-  
-    color: #60a5fa;
-  
-    text-decoration: none;
-  
-    font-weight: 600;
-  
-  }
-  
-  .redirect-text a:hover {
-  
-    text-decoration: underline;
-  
-  }
+}

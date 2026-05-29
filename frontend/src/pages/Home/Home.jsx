@@ -1,5 +1,4 @@
 // frontend/src/pages/Home/Home.jsx
-
 import Navbar from "../../components/Navbar/Navbar";
 import "./Home.css";
 
@@ -9,15 +8,24 @@ function Home() {
       <Navbar />
 
       <div className="home-container">
-        <section className="hero-section">
-          <h1>DeepShield AI</h1>
+        {/* Decorative Grid Overlay */}
+        <div className="grid-overlay" />
 
-          <p>
-            Scalable Deepfake Detection Infrastructure
+        <section className="hero-section">
+          <div className="announcement-badge animate-fade-in">
+            <span>Next-Gen Infrastructure</span>
+          </div>
+
+          <h1 className="animate-fade-in delay-1">
+            DeepShield AI
+          </h1>
+
+          <p className="animate-fade-in delay-2">
+            Scalable Deepfake Detection Infrastructure built for enterprise reliability and ultra-low latency inference.
           </p>
 
-          <div className="hero-buttons">
-            <button>Get Started</button>
+          <div className="hero-buttons animate-fade-in delay-3">
+            <button className="primary-btn">Get Started</button>
             <button className="secondary-btn">
               Explore Models
             </button>
@@ -29,23 +37,26 @@ function Home() {
 
           <div className="feature-cards">
             <div className="card">
+              <div className="card-icon-wrapper">🚀</div>
               <h3>AI Inference</h3>
               <p>
-                Upload images and detect deepfakes instantly.
+                Upload images and detect complex deepfakes instantly with optimized tensor deployment.
               </p>
             </div>
 
             <div className="card">
+              <div className="card-icon-wrapper">⚡</div>
               <h3>Redis Caching</h3>
               <p>
-                High-performance prediction caching.
+                High-performance prediction and signature caching layers yielding sub-millisecond lookups.
               </p>
             </div>
 
             <div className="card">
+              <div className="card-icon-wrapper">⚙️</div>
               <h3>Dynamic Models</h3>
               <p>
-                Load CNN and SVM models dynamically.
+                Hot-swap CNN, ViT, and SVM models dynamically without service degradation or reboots.
               </p>
             </div>
           </div>
