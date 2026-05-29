@@ -15,3 +15,23 @@ export const googleSignup = async (token) => {
     token
   });
 };
+
+export const signinUser = async (userData) => {
+
+  return API.post(
+    "/signin",
+    userData
+  );
+
+};
+export const getCurrentUser = async (token) => {
+  return API.get(
+    "/me",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+
+};

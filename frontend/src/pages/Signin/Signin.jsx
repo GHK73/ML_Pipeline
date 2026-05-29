@@ -1,20 +1,20 @@
-// frontend/src/pages/Signup/Signup.jsx
+// frontend/src/pages/Signin/Signin.jsx
 
-import "./Signup.css";
+import "./Signin.css";
 import { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import {
-  signupUser,
+  signinUser,
   googleSignup
 } from "../../services/authApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
-function Signup() {
+function Signin() {
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: ""
   });
@@ -34,7 +34,8 @@ function Signup() {
 
     try {
 
-      const response = await signupUser(formData);
+      const response =
+        await signinUser(formData);
 
       console.log(response.data);
 
@@ -49,6 +50,7 @@ function Signup() {
       );
 
       alert(response.data.message);
+
       window.location.href = "/";
 
     } catch (error) {
@@ -57,10 +59,11 @@ function Signup() {
 
       alert(
         error.response?.data?.message ||
-        "Signup Failed"
+        "Signin Failed"
       );
 
     }
+
   };
 
   const handleGoogleSuccess = async (
@@ -88,6 +91,7 @@ function Signup() {
       );
 
       alert(response.data.message);
+
       navigate("/");
 
     } catch (error) {
@@ -96,70 +100,80 @@ function Signup() {
 
       alert(
         error.response?.data?.message ||
-        "Google Signup Failed"
+        "Google Signin Failed"
       );
 
     }
+
   };
 
   return (
+
     <>
-    <Navbar />
-    <div className="signup-container">
+    
+      <Navbar />
 
-      <form
-        className="signup-box"
-        onSubmit={handleSubmit}
-      >
+      <div className="signin-container">
 
-        <h1>Create Account</h1>
+        <form
+          className="signin-box"
+          onSubmit={handleSubmit}
+        >
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-        />
+          <h1>Welcome Back</h1>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
-
-        <button type="submit">
-          Create Account
-        </button>
-
-        <div className="divider">
-          OR
-        </div>
-
-        <div className="google-login">
-
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={() => {
-              console.log(
-                "Google Login Failed"
-              );
-            }}
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
           />
 
-        </div>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+          />
 
-      </form>
-    </div>
-  </>
+          <button type="submit">
+            Signin
+          </button>
+
+          <div className="divider">
+            OR
+          </div>
+
+          <div className="google-login">
+
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => {
+                console.log(
+                  "Google Login Failed"
+                );
+              }}
+            />
+
+          </div>
+
+          <p className="redirect-text">
+
+            Don't have an account?
+
+            <Link to="/signup">
+              Signup
+            </Link>
+
+          </p>
+
+        </form>
+
+      </div>
+
+    </>
+
   );
 }
 
-export default Signup;
+export default Signin;

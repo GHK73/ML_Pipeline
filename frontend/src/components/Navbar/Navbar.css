@@ -155,3 +155,73 @@
   }
 
 }
+/* SIGNIN BUTTON */
+
+.signin-btn {
+
+  padding: 0.72rem 1.4rem;
+
+  border-radius: 0.9rem;
+
+  border:
+    1px solid rgba(96, 165, 250, 0.35);
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: #e2e8f0 !important;
+
+  font-weight: 600;
+
+  backdrop-filter: blur(8px);
+
+  transition: 0.3s ease;
+
+}
+
+.signin-btn:hover {
+
+  transform: translateY(-2px);
+
+  border-color: #60a5fa;
+
+  color: #60a5fa !important;
+
+  box-shadow:
+    0 0 20px rgba(96, 165, 250, 0.2);
+
+}
+
+.logout-btn {
+
+  padding: 0.75rem 1.4rem;
+
+  border: none;
+
+  border-radius: 0.9rem;
+
+  background:
+    linear-gradient(
+      to right,
+      #dc2626,
+      #ef4444
+    );
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+}
+
+.logout-btn:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 25px rgba(239, 68, 68, 0.4);
+
+}

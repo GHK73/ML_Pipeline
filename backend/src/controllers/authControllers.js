@@ -92,3 +92,72 @@ export const googleSignup = async(req,res) =>{
         res.status(500).json({message: "Google Authentication Failed"});
     }
 };
+
+// Signin
+export const signin = async(req,res)=>{
+    try{
+        const {email, password} = req.body;
+
+        if(!email || !password){
+            return res.status(400).json({message: "Email and Password are required"});
+        }
+
+        const user = await prisma.user.findUnique({where: {email}});
+        if(!user){
+            return res.status(400).json({message:"User does not exist"});
+        }
+
+        if(user.provider !== "local"){
+            return res.status(400).json({message: "Please login using ${user.provider}"});
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(password,user.password);
+        if(!isPasswordCorrect){
+            return res.status(400).json({message:"Invalid Credentials"});
+        }
+
+        const token = generateToken(user.id);
+
+        res.status(200).json({
+            message:"Signin Successful",
+            token,
+            user:{
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                provider: user.provider
+            },
+        });
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message:"Internal Server Error"});
+    }
+};
+
+export const getCurrentUser = async(req, res)=>{
+    try{
+        console.log(req.userId);
+        const user = await prisma.user.findUnique({
+            where: {id: req.userId},
+            select:{
+                id:true,
+                name: true,
+                email: true,
+                provider: true
+            }
+        });
+
+        if(!user){
+            return res.status(400).json({
+                message:"User not found"
+            });
+        }
+        res.status(200).json(user);
+    }catch(error){
+        console.log(error);
+        res.status(500).json({
+            message:"Internal Server error"
+        });
+    }
+};
