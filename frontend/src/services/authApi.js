@@ -6,32 +6,31 @@ const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL
 });
 
-export const signupUser = async (userData) => {
-  return API.post("/signup", userData);
-};
+API.interceptors.response.use(
+  (response) => response,
 
-export const googleSignup = async (token) => {
-  return API.post("/google", {
-    token
-  });
-};
+  (error) => {
 
-export const signinUser = async (userData) => {
-
-  return API.post(
-    "/signin",
-    userData
-  );
-
-};
-export const getCurrentUser = async (token) => {
-  return API.get(
-    "/me",
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+    if (error.response?.status === 429) {
+      alert("Too many requests. Please try again later.");
     }
-  );
 
-};
+    return Promise.reject(error);
+  }
+);
+
+export const signupUser = async (userData) =>
+  API.post("/signup", userData);
+
+export const googleSignup = async (token) =>
+  API.post("/google", { token });
+
+export const signinUser = async (userData) =>
+  API.post("/signin", userData);
+
+export const getCurrentUser = async (token) =>
+  API.get("/me", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
