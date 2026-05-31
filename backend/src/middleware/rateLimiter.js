@@ -4,6 +4,9 @@ import { redisClient } from "../config/redis.js";
 
 const rateLimiter = ({api, bucketSize, refillTime}) => 
 {
+    if(process.env.RATE_LIMITING !== "true"){
+        return next();
+    }
     return async (req, res, next) => {
         try {
             const ip = req.ip;
