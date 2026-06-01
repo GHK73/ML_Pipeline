@@ -1,21 +1,37 @@
 // backend/src/middleware/authMiddleware.js
 
 import jwt from "jsonwebtoken";
-const authMiddleware = (req, res, next)=>{
-    try{
+
+const authMiddleware = (req, res, next) => {
+
+    try {
         const authHeader = req.headers.authorization;
-        if(!authHeader || !authHeader.startsWith("Bearer ")){
+        if (
+            !authHeader ||
+            !authHeader.startsWith("Bearer ")
+        ) {
             return res.status(401).json({
                 success: false,
-                message:" Unauthorized"});
+                message: "Unauthorized",
+            });
         }
+
         const token = authHeader.split(" ")[1];
-        const decoded = jwt.verify(token,process.env.JWT_SECRET);
-        req.userId = decoded.id;
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET
+        );
+
+        req.user = {
+            id: decoded.id,
+            role: decoded.role,
+        };
         next();
-    }catch(error){
+
+    } catch (error) {
         return res.status(401).json({
-            message:"Invalid token"
+            success: false,
+            message: "Invalid token",
         });
     }
 };
