@@ -14,22 +14,36 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id String @id @default(cuid())
 
-  name          String?
-  email         String    @unique
+  name  String?
+  email String  @unique
 
-  password      String?
+  password String?
 
-  googleId      String?   @unique
-  profilePic    String?
+  googleId   String? @unique
+  profilePic String?
 
-  provider      String    @default("local")
+  provider String @default("local")
 
-  role          Role      @default(USER)
+  role Role @default(USER)
 
-  isActive      Boolean   @default(true)
+  isActive Boolean @default(true)
 
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  models MLModel[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MLModel {
+  id           String   @id @default(cuid())
+  name         String
+  modelHash    String   @unique
+  architecture String
+  framework    String   @default("pytorch")
+  modelPath    String
+  uploadedById String
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime @default(now())
 }
